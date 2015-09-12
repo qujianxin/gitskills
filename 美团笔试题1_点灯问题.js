@@ -54,14 +54,3 @@ function chess(colors,pivots){
 
 chess(colors,pivots);
 
-
-
-
-
-
-
-
-
-
-
-
