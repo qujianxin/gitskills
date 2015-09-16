@@ -1,0 +1,39 @@
+4、hack：
+（代码讲解，http://www.duitang.com/static/csshack.html
+
+由于不同的浏览器对CSS的支持及解析结果不一样，还由于CSS中的优先级的关系。我们就可以根据这个来针对不同的浏览器来写不同的CSS。
+CSS Hack大致有3种表现形式，CSS类内部Hack、选择器Hack以及HTML头部引用(if IE)Hack，CSS Hack主要针对IE浏览器。
+类内部Hack：比如 IE6能识别下划线"_"和星号" * "，IE7能识别星号" * "，但不能识别下划线"_"，而firefox两个都不能认识。等等
+background-color:#f1ee18;/*所有识别*/
+background-color:#00deff\9; /*IE6、7、8识别*/
++background-color:#a200ff;/*IE6、7识别*/
+_background-color:#1e0bd1;/*IE6识别*/
+
+选择器Hack：比如 IE6能识别*html .class{}，IE7能识别*+html .class{}或者*:first-child+html .class{}。等等
+.bb, x:-moz-any-link, x:default{background-color:#00ff00;}/*IE7 firefox3.5及以下 识别 */
+* +html .bb{background-color:#a200ff;}/* 仅IE7 识别 */
+这样就区分出来firefox3.5及以下
+
+HTML头部引用(if IE)Hack：针对所有IE，<!--[if IE]><!--您的代码--><![endif]-->，针对IE6及以下版本，<!--[if lt IE 7]><!--您的代码--><![endif]-->，这类Hack不仅对CSS生效，对写在判断语句里面的所有代码都会生效。
+书写顺序，一般是将识别能力强的浏览器的CSS写在前面。浏览器优先级别:FF < IE7 < IE6 , CSS hack书写顺序一般为FF IE7 IE6。
+）
+CSS基本功：
+1、布局：
+（div+css:float、margin、padding、clear。。。
+）
+2、em单位：
+（
+1，浏览器的默认字体大小是16px，故默认1em=16px
+
+2，如果元素自身没有设置字体大小，那么元素自身上的所有属性值如“boder、width、height、padding、margin、line-height”等值，我们都可以按下面的公式来计算
+
+1 ÷ 父元素的font-size × 需要转换的像素值 = em值
+
+3，这一种千万要慢慢理解，不然很容易与第二点混了。如果元素设置了字体大小，那么字体大小的转换依旧按第二条公式计算，也就是下面的，
+
+1 ÷ 父元素的font-size × 需要转换的像素值 = em值
+
+   那么元素设置了字体大小，此元素的其他属性，如“border、width、height、padding、margin、line-height”计算就需要按照下面的公式来计算，
+
+1 ÷ 元素自身的font-size × 需要转换的像素值 = em值
+）
