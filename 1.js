@@ -2,42 +2,28 @@
 * @Author: anchen
 * @Date:   2015-09-15 18:48:11
 * @Last Modified by:   anchen
-* @Last Modified time: 2015-09-15 21:35:21
+* @Last Modified time: 2015-09-17 21:05:02
 */
 
-var graduate=function(N,score){
+var graduate=function(N,str){
   var pattern = /.*/mg;
-  var str = score;
   var elems = str.match(pattern);
-  var scores = [];
+  var string = [];
   for(var i=0; i<elems.length; i++){
     if(elems[i]){
       var e = elems[i].split(' ');
-      scores.push(e);
+      string.push(e);
     }
   }
+
   var result=[];
     for(var i=0; i<N; i++){
-      var Zhengzhi = parseInt(scores[i][0]);
-      alert(Zhengzhi)
-      var Yingyu = parseInt(scores[i][1]);
-      var Shuxue = parseInt(scores[i][2]);
-      var Zhuanyeke = parseInt(scores[i][3]);
-      var sum = Zhengzhi + Yingyu + Shuxue + Zhuanyeke;
-      alert(sum)
-      if(Zhengzhi<60||Yingyu<60||Shuxue<90||Zhuanyeke<90||sum<310){
-        result.push("Fail");
+      for(var j=0; j<string[i].length; j++){
+        var charCode = (string[i][j]).charCodeAt();
+        var eight = parseInt(charCode,8);
+        result.push(eight);
       }
-      else{
-        if(sum >= 350){
-          result.push("Gongfei");
-        }else{
-          result.push("Zifei");
-        }
-      }
-
-    }
-
-  return result;
+      
+  
 };
 alert(graduate(2,"50 100 100 100\r\n100 100 100 100"));
