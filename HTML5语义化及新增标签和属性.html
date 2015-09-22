@@ -1,0 +1,119 @@
+/*
+~~！文档结构元素：
+1、文章语义：article	 header	footer
+article 元素在页面中表示结构完整且独立的内容部分，如论坛的一个帖子，杂志或报纸的一篇文章
+header 表示一个区块的标题
+footer 表示区块的尾部内容，包括附加信息，如文档的作者，文档的创作日期，相关的阅读链接
+2、内容区块语义：section
+section 表示普通文档内容区块或应用区块，通常由标题和内容组成。
+3、侧栏和导航：aside nav
+aside 表示当前页面的附属信息部分，包含与主要内容无关的内容引用、侧边栏、广告、导航元素组
+nav 导航栏
+4、address元素
+address 用来提供文档的联系人信息，一般放在网页的开头或结尾，最常用的是和其他内容包含在footer内容中
+
+~~！浏览器兼容性
+1、直接使用成熟的框架html5shiv
+<!--[if lt IE9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+2、IE9以下也可以通过document.createElement的方法产生语义标签，使浏览器支持这些标签，还要添加标签的默认样式
+
+~~！语义化的理解
+用正确的标签做正确的事
+1、html语义化就是让页面的内容结构化，便于浏览搜索引擎解析
+2、在没有css的情况下，内容也是以一种文档格式显示，容易阅读
+3、搜索引擎的爬虫依赖于标记来确定上下文和各个关键字的权重，利于SEO
+4、使阅读源代码的人更容易将网站分块，便于阅读维护理解
+
+~~！html5的新特性
+HTML5现在已经不是SGML（标准通用标记语言）的子集，主要是关于图像，位置，存储，多任务等功能的增加
+1、绘画 canvas
+	  用于媒介回放的video和audio元素
+	  本地离线存储localStorage长期存储数据，浏览器关闭后不丢失
+	  sessionStorage的数据在浏览器关闭后自动删除
+2、语义化更好的内容元素：article, footer, header, nav, section
+       表单控件：calender, date, time, email, url, search
+	   <input type="email">
+	   新的技术：webworker, websocket, Geolocation
+3、新增与表单相关的属性：
+	   1、为input、button、select和textarea新增autofocus属性。表示在打开页面时使元素自动获得焦点
+	   2、为input、textarea新增placeholder属性。可以在用户输入时进行提示
+	   3、为input、output、button、select、textarea、fieldset增加form属性。声明元素属于哪个表单，并不关心元素在页面的哪个位置，甚至在表单之外都行
+	   4、为input和textarea增加required属性。表示必填项，在用户提交表单时系统会自动检测元素是否有内容
+	  
+*/
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>1</title>
+	</head>
+	<body>
+	<article>
+		<header>
+		<h1>头部的大标题</h1>
+		<p>头部的小标题</p>
+		</header>
+		<p>主体内容1</p>
+		<p>主体内容2</p>
+		
+		<section>
+			<h1>评论</h1>
+			<article>
+				<header>
+					<p>评论1</p>
+				</header>
+				<p>内容1</p>
+			</article>
+			<article>
+				<header>
+					<p>评论2</p>
+				</header>
+				<p>内容2</p>
+			</article>
+		</section>
+		
+		<footer>
+			<address>
+				<p>地址</p>
+			</address>
+		</footer>
+	</article>
+	</body>
+</html>
+
+
+//侧栏和导航
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>2</title>
+	</head>
+	<body>
+		<aside>
+			<nav>
+				<ul>
+					<li><a href="#">1</a></li>
+					<li><a href="#">2</a></li>
+					<li><a href="#">3</a></li>
+				</ul>
+			</nav>
+		</aside>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
