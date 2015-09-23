@@ -1,0 +1,124 @@
+1、自定义搜索框
+因为想要在搜索框内部的后面添加一个小图片，于是没有用原始的input搜索框，就自定义了一个div，内部有两个div块，
+分别用于input搜索框和放置图片的。要把input的默认样式去掉  
+border:none;  outline:none;  
+然后要做搜索框的样式。鼠标移到框上时变色
+.sear:hover{
+  border: 1px solid blue;
+}
+然后点击框的时候框要变色，点击别处的时候颜色要变回来。
+然后我发现div的css并没有:active功能属性，于是就用js写了当点击输入框的时候判断是否有change样式，没有就用.className加上
+点击其他地方，就是document.body，检测输入框是否有change样式，若有就replace(' change','')
+这里还要注意防止事件冒泡。用stopPro(evt)做浏览器兼容，然后在input的点击事件后添加stopPro(event)
+<script>
+  var s=document.getElementById('sear');
+  document.body.onclick=function(){
+    if(s.className.indexOf('change') > -1){ 
+      s.className=s.className.replace(' change','')
+    }
+  }
+  s.onclick=function(event){
+    if(s.className.indexOf('change') < 0){
+      s.className+=' change';
+    }
+    stopPro(event);
+  }
+  function stopPro(evt){
+    var e = evt || window.event;
+    window.event?e.cancelBubble=true:e.stopPropagation();
+  }
+</script>
+
+微软提出了名为事件冒泡(event bubbling)的事件流。事件会从最内层的元素开始发生，一直向上传播，直到document对象。
+p -> div -> body -> html -> document
+网景提出另一种事件流名为事件捕获(event capturing)。与事件冒泡相反，事件会从最外层开始发生，直到最具体的元素。
+document -> html -> body -> div -> p
+
+1、bootstrap表格在ie8一下颜色分行显示不适配
+原因是因为bootstrap的css源码中table的样式table-striped用的是:nth-of-type(odd) HTML5新增的伪类选择器，不支持IE8一下的浏览器
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #f9f9f9;
+}
+所以我就写了这个浏览器的适配
+	<!--[if lt IE 9]>
+	   <script type="text/javascript" >
+            $(document).ready(function() {
+			    var even = $('#table tr:even:gt(0)');
+				var odd = $('#table tr:odd');
+				var table = $('#table tr');
+                $('#table tr:has(th)').css('background','violet');        //表格标题
+                even.css('background','yellow').attr("bg","yellow");    //偶数行,且行数大于0(即标题)
+                odd.css('background','olive').attr("bg","olive");            //奇数行
+				table.mouseover(function(){$(this).css("background","white");})
+				table.mouseout(function(){var bgc=$(this).attr("bg");$(this).css("background",bg;})
+            });
+        </script>
+	<![endif]-->
+	
+	2、carousel图片大小不统一，且不适应屏幕
+	我把carousel中的item设置为
+	.carousel .item {
+		max-width: 100%;
+		height: 0;
+		padding-bottom: 40%;
+		overflow: hidden;
+	}
+	并把img的宽度设为100%
+	.carousel img {
+		width: 100%;
+	}
+
+	3、知道了bootstrap屏幕适配的原理col-xs-*和col-sm-* 和col-md-*，总共有12个值，占父元素总宽度就是把元素的position设置成relative相对定位，然后float:left向左浮动，最后设置他们的width:75%
+	col-xs-*和col-sm-* 和col-md-*{
+		position: relative;
+		min-height: 1px;
+		padding-right: 15px;
+		padding-left: 15px;
+		float: left;
+	}
+	.col-xs-9 {
+		width: 75%;
+	}
+	
+	4、关于倒计时功能
+	因为服务器无法承受手机验证码的多次请求，于是就写了按钮的倒计时功能，与此同时知道了setInterval，clearInterval，settimeout的区别
+	$('#confirm_btn').on('click', function(event) {
+			event.preventDefault();
+			/* Act on the event */
+			var step = 59;
+			var btn = $('#confirm_btn');
+			btn.attr("disabled", true);//设置disabled属性
+			btn.text('重新发送60');
+			var _res = setInterval(function()
+			{
+			btn.text('重新发送'+step);
+			step -= 1;
+				if(step < 0){
+					btn.removeAttr("disabled"); //移除disabled属性
+					btn.text('获取验证码');
+					clearInterval(_res);//清除setInterval
+				}
+			},1000);
+		});
+		
+setTimeout(function, 1000) 在载入后，延迟指定时间后，去执行一次表达式，就退出
+setInterval(function, 1000) 在载入后，每隔指定的时间就执行一次表达式，循环执行，直到遇到clearInterval(本函数)
+		
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

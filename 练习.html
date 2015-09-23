@@ -3,8 +3,72 @@
 	<head>
 		<meta charset="gb2312">
 		<title>2</title>
+		<style>
+.btn-default.focus, .btn-default:focus {
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #8c8c8c;
+}
+.btn.focus, .btn:focus, .btn:hover {
+    color: #222;
+    text-decoration: none;
+}
+.btn.active.focus, .btn.active:focus, .btn.focus, .btn.focus:active, .btn:focus:active, .btn:focus {
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+}
+.btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+.btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.4285;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+
+		</style>		   
+		<script type="text/javascript" >
+			var step=10;
+			var _res =setInterval(function()
+			{
+			document.body.innerHTML+=step;
+			step -= 1;
+				if(step < 0){
+					document.body.innerHTML+="end";
+					clearInterval(_res);//清除setInterval
+				}
+			},1000);
+        </script>
 	</head>
 	<body>
+
+
+	<button class="btn btn-default" style="width:100px">11</button>
 		<aside>
 			<nav>
 				<ul>
