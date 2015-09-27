@@ -2,13 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>ÉÏ±ß</title>
+<title>å¸ƒå±€</title>
 <style type="text/css">
 *{ margin:0; padding:0;}
-html,body{ height:100%; width:100%;}
 #id1, #id2{ text-align:center;}
-#id1 { height:200px; background:#000; color:#fff; line-height:200px;}
-#id2 { height:auto; background:#ccc;}
+#id1 { height:200px; background:#000; color:#fff;position:fixed; width:100%;}
+#id2 {background:#ccc;margin-top:200px;float:left;}
+#lt{ float: left;width:200px; background: #222;height:100%;}
+#rt{ overflow: hidden; background: #fff;height:100%;}
 </style>
 <script type="text/javascript">
 window.onload = function(){
@@ -20,6 +21,9 @@ window.onload = function(){
  
 <body>
 <div id="id1">id1</div>
-<div id="id2">id2</div>
+<div id="id2">
+	<div id="lt"></div>
+	<div id="rt"></div>
+</div>
 </body>
 </html>
